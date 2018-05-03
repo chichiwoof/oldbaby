@@ -9,7 +9,7 @@ class M4p3Spider(CrawlSpider):
 	start_urls = ['http://www.musicforprogramming.net/?one']
 
 	rules = (
-		Rule(LinkExtractor(restrict_xpaths=restrict_xpaths=('//li[@class="next"]/a')), callback='parse_item'),
+         #		Rule(LinkExtractor(restrict_xpaths=restrict_xpaths=('//li[@class="next"]/a')), callback='parse_item'),
 	)
 
 	def parse_item(self, response):
