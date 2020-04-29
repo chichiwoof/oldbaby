@@ -1,5 +1,5 @@
 # oldbaby
 Random Access Sampling
 
-ROADMAP:
-https://bit.ly/2y0gELb
+
+<a href="https://bit.ly/2y0gELb">West coast block it out</a>
