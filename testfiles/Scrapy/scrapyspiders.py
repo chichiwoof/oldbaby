@@ -353,3 +353,128 @@ With these concepts in mind, here are answers to your specific questions...
 
 .//*[@id='Passwd'] means to select all elements at or beneath the current context node that have an id attribute value equal to 'Passwd'.
 //child::input[@type='password'] can be simplified to //input[@type='password'] and means to select all input elements in the document that have an type attribute value equal to 'password'.
+
+
+
+
+
+import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
+
+
+class M4p3Spider(CrawlSpider):
+        name = "m4p6"
+        allowed_domains = ['musicforprogramming.net']
+        start_urls = ['http://www.musicforprogramming.net/?one']
+
+        rules = (
+                Rule(LinkExtractor(restrict_xpaths=('//a[@href]')), callback='parse_item'),
+        )
+
+        def parse_item(self, response):
+                content = response.xpath("//a[@href]/@href").extract_first()
+                #yield {'music': ''.join(content)}
+                filename = 'tstitw.txt'
+                with open(filename, 'a+') as f:
+                    f.write(repr(content) + "\n")
+                        #f.write('response.xpath("//a[@href]/@href").extract_first()' % (i+1))
+
+
+
+
+
+
+
+
+        def parse_item(self, response):
+            filename = 'tstitw.txt'
+            for i in range(50):
+                content = response.xpath("//a[@href]/@href").extract_first()
+                yield {'music': ''.join(content)}
+                filename = 'tstitw.txt'
+                with open(filename, 'w+') as f:
+                        f.write(repr(content))
+
+
+
+
+a = [1, 'x', 2]
+a.append('y')
+
+page = response.url.split("/")[-2]
+filename = 'quotes-%s.html' % page
+with open(filename, 'wb') as f:
+    f.write(response.body)
+self.log('Saved file %s' % filename)
+
+
+
+file = open(“testfile.txt”,”w”)
+
+file.write(“Hello World”)
+file.write(“This is our new text file”)
+file.write(“and this is another line.”)
+file.write(“Why? Because we can.”)
+
+file.close()
+
+
+
+
+import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
+
+
+class M4p3Spider(CrawlSpider):
+        name = "m4p7"
+        allowed_domains = ['thesoundarchive.com']
+        start_urls = ['http://www.thesoundarchive.com/beavis-and-butthead.asp']
+
+        rules = (
+                Rule(LinkExtractor(restrict_xpaths=('//a[@href]')), callback='parse_item'),
+        )
+
+        def parse_item(self, response):
+                content = response.xpath("//a[@href]/@href[ends-with(text(), \"wav\")]").extract()
+                #yield {'music': ''.join(content)}
+                filename = 'bnb.txt'
+                with open(filename, 'a+') as f:
+                    f.write(repr(content) + "\n")
+
+
+
+
+
+
+
+import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
+
+
+class M4p3Spider(CrawlSpider):
+        name = "m4p7"
+        allowed_domains = ['freesound.org/']
+        start_urls = ['https://freesound.org/browse/']
+
+        rules = (
+                Rule(LinkExtractor(restrict_xpaths=('//a[@href]')), callback='parse_item'),
+        )
+
+        def parse_item(self, response):
+                content = response.xpath('//a[contains(@href,"mp3")]/@href').extract_first()
+                #yield {'music': ''.join(content)}
+                filename = 'tstitw.txt'
+                with open(filename, 'a+') as f:
+                    f.write(repr(content) + "\n")
+                        #f.write('response.xpath("//a[@href]/@href").extract_first()' % (i+1))
+
+
+https://freesound.org/home/login/
+
+
+
+[contains(@class,'player-wrapper')]
+'//a[contains(@href,"/Best-Sellers-Health-Personal-Care")]'
